@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Pan Semanal</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Reserva tu Pan</h1>
+        <p>Los cupos se reinician cada domingo.</p>
+
+        <form id="reservation-form">
+            <input type="text" id="user_name" placeholder="Tu nombre" required>
+            <input type="email" id="user_email" placeholder="Tu correo electrónico" required>
+
+            <label for="size-select">Tamaño del pan:</label>
+            <select id="size-select" required>
+                <option value="2" data-price="2.00">Hogaza Grande 700g (2,00€)</option>
+                <option value="1" data-price="1.20">Media Hogaza 350g (1,20€)</option>
+            </select>
+
+            <label for="day-select">Día de recogida:</label>
+            <select id="day-select" required>
+                <option value="" disabled selected>Seleccionar día...</option>
+                <option value="lunes">Lunes</option>
+                <option value="viernes">Viernes</option>
+                <option value="sabado">Sábado</option>
+            </select>
+
+            <div id="price-display" style="text-align: center; font-weight: bold; font-size: 1.2rem; color: #d35400; margin: 10px 0;">
+                Total: 2,00€
+            </div>
+
+            <div id="status-msg"></div>
+
+            <button type="submit" id="submit-btn">Reservar ahora</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

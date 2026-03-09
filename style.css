@@ -1,0 +1,77 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('WhatsApp Image 2026-03-09 at 20.25.41.jpeg'); 
+    background-size: cover;       
+    background-position: center;  
+    background-attachment: fixed; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Lo mantiene abajo */
+    height: 100vh;
+    padding-bottom: 30px; /* Margen pequeño con el suelo */
+    box-sizing: border-box;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.92); 
+    /* Reducimos el padding para que no sobre tanto borde blanco */
+    padding: 1.5rem 2rem; 
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    width: 90%;
+    /* Ajustamos el ancho para que sea un rectángulo compacto */
+    max-width: 500px; 
+    backdrop-filter: blur(8px); 
+}
+
+h1 { 
+    color: #2c3e50; 
+    text-align: center; 
+    margin: 0 0 5px 0; /* Casi sin margen superior */
+    font-size: 24px;
+}
+
+p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; /* Espacio más estrecho entre campos */
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: white;
+}
+
+button {
+    padding: 12px;
+    background-color: #d35400; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+}
+
+button:hover { 
+    background-color: #a04000; 
+}
+
+#status-msg {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 8px;
+}
