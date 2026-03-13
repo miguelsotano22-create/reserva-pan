@@ -11,17 +11,34 @@ let reservas = JSON.parse(localStorage.getItem('reservas_pan')) || {
     "lunes": 0, "viernes": 0, "sabado": 0, "lastUpdate": new Date().getTime()
 };
 
-// 4. REINICIO DOMINGOS
+
+// 4. REINICIO AUTOMÁTICO (Martes a las 23:00)
 function checkReset() {
     const ahora = new Date();
     const ultimaReserva = new Date(reservas.lastUpdate);
-    const inicioSemanaActual = new Date(ahora);
-    inicioSemanaActual.setDate(ahora.getDate() - ahora.getDay());
-    inicioSemanaActual.setHours(0, 0, 0, 0);
+    
+    // Calculamos el último martes a las 23:00
+    let ultimoMartes23 = new Date(ahora);
+    // Buscamos el martes anterior (o hoy si es martes)
+    let diasParaMartes = (ahora.getDay() + 7 - 2) % 7; 
+    ultimoMartes23.setDate(ahora.getDate() - diasParaMartes);
+    ultimoMartes23.setHours(23, 0, 0, 0);
 
-    if (ultimaReserva.getTime() < inicioSemanaActual.getTime()) {
-        reservas = { "lunes": 0, "viernes": 0, "sabado": 0, "lastUpdate": ahora.getTime() };
+    // Si hoy es martes pero aún no son las 23:00, el reset válido fue el martes de la semana pasada
+    if (ahora < ultimoMartes23) {
+        ultimoMartes23.setDate(ultimoMartes23.getDate() - 7);
+    }
+
+    // Si la última reserva guardada es anterior al último martes a las 23:00, reseteamos
+    if (ultimaReserva.getTime() < ultimoMartes23.getTime()) {
+        reservas = { 
+            "lunes": 0, 
+            "viernes": 0, 
+            "sabado": 0, 
+            "lastUpdate": ahora.getTime() 
+        };
         localStorage.setItem('reservas_pan', JSON.stringify(reservas));
+        console.log("Sistema reiniciado: Nuevo ciclo tras el martes 23:00");
     }
 }
 
@@ -108,4 +125,5 @@ form.addEventListener('submit', function(event) {
         statusMsg.style.color = "red";
         statusMsg.innerText = "No queda espacio suficiente para ese tamaño.";
     }
+
 });
